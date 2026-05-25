@@ -1,6 +1,16 @@
 from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///GetGreat.db'
+db = SQLAlchemy(app)
+
+
+class post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    text = db.Column(db.Text, nullable=False)
+
 
 header_buttons = [
     {'title': 'Overview', 'url': '/main', 'class': 'link-secondary'},
