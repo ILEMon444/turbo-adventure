@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<header class="site-header">
+     <div class="container">
+         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                 <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                     <use xlink:href="#bootstrap"></use>
+                 </svg>
+             </a>
+             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                 {% for button in header_buttons %}
+                 <li><a href="{{ button.url }}" class="nav-link px-2 {{ button.class }}">{{ button.title }}</a></li>
+                 {% endfor %}
+             </ul>
+             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{{ url_for('search') }}" method="get" role="search">
+             <input type="search" class="form-control" name="q" placeholder="Search..." aria-label="Search">
+             </form> <div class="dropdown text-end d-flex align-items-center gap-2">
+             <a href="/profile" class="d-block link-body-emphasis text-decoration-none">
+                 <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+             </a>
+             <button class="btn btn-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+             <ul class="dropdown-menu text-small">
+                 {% for button in dropdown_buttons %}
+                 {% if button.divider_before %}
+                 <li><hr class="dropdown-divider"></li>
+                 {% endif %}
+                 <li><a class="dropdown-item" href="{{ button.url }}">{{ button.title }}</a></li>
+                 {% endfor %}
+             </ul>
+         </div>
+         </div>
+     </div>
+</header>
+{% block body %}{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

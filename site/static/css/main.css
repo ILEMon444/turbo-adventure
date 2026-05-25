@@ -1,0 +1,22 @@
+body {
+    background: grey;
+    margin: 0;
+}
+
+.site-header {
+    background: #2f5d50;
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.site-header .nav-link,
+.site-header .link-body-emphasis,
+.site-header .link-secondary {
+    color: #ffffff !important;
+}
+
+.site-header .form-control {
+    border: none;
+}
