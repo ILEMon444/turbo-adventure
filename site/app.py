@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -46,7 +46,49 @@ def index():
 
 @app.route('/about')
 def about():
-    return "<h1>About us</h1>"
+    return render_template('about.html')
+
+@app.route('/search')
+def search():
+    query = request.args.get('q', '').strip().lower()
+
+    if query:
+        results = [
+            page for page in pages
+            if query in page['title'].lower() or query in page['description'].lower()
+        ]
+    else:
+        results = []
+
+    return render_template('search.html', query=query, results=results)
+
+@app.route('/inventory')
+def inventory():
+    return render_template('inventory.html')
+
+@app.route('/customers')
+def customers():
+    return render_template('customers.html')
+
+@app.route('/products')
+def products():
+    return render_template('products.html')
+
+@app.route('/new-project')
+def new_project():
+    return render_template('new_project.html')
+
+@app.route('/settings')
+def settings():
+    return render_template('settings.html')
+
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
+@app.route('/sign-out')
+def sign_out():
+    return render_template('sign_out.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
