@@ -42,7 +42,7 @@ def add_header_buttons():
 
 @app.route('/')
 def index():
-    return "<h1>Main page</h1>"
+    return render_template('index.html')
 
 @app.route('/about')
 def about():

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block body %}
+<main class="container py-4">
+    <h1>Search</h1>
+
+    {% if query %}
+        <p>Results for: <strong>{{ query }}</strong></p>
+
+        {% if results %}
+            <div class="list-group">
+                {% for page in results %}
+                <a class="list-group-item list-group-item-action" href="{{ page.url }}">
+                    <strong>{{ page.title }}</strong>
+                    <span class="d-block text-muted">{{ page.description }}</span>
+                </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    {% else %}
+        <p>Enter a search query.</p>
+    {% endif %}
+</main>
+{% endblock %}
